@@ -26,13 +26,25 @@ This project provides a simple Docker image based on Ubuntu with SSH support. It
 ./build.sh
 ```
 
+To also deploy the image to DockerHub:
+```bash
+./build.sh --deploy
+```
+
 ### On Windows
 
 ```cmd
 build.bat
 ```
 
+To also deploy the image to DockerHub:
+```cmd
+build.bat --deploy
+```
+
 This will build a Docker image named `deploy4j-docker-droplet:latest`.
+
+**Note:** When using the `--deploy` option, you must be logged in to DockerHub first using `docker login`. The image will be pushed to `teggr/deploy4j-docker-droplet:latest`.
 
 ## Running the Container
 
