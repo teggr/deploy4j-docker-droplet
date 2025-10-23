@@ -18,58 +18,12 @@ This project provides a simple Docker image based on Ubuntu with SSH support. It
 - Docker installed on your system
 - SSH key pair (public and private keys)
 
-## Building the Docker Image
-
-### On Linux/macOS
-
-```bash
-./build.sh
-```
-
-To also deploy the image to DockerHub:
-```bash
-./build.sh --deploy
-```
-
-### On Windows
-
-```cmd
-build.bat
-```
-
-To also deploy the image to DockerHub:
-```cmd
-build.bat --deploy
-```
-
-This will build a Docker image named `deploy4j-docker-droplet:latest`.
-
-**Note:** When using the `--deploy` option, you must be logged in to DockerHub first using `docker login`. The image will be pushed to `teggr/deploy4j-docker-droplet:latest`.
-
 ## Running the Container
 
 The container requires you to mount your SSH public key for authentication.
 
-### On Linux/macOS
-
 ```bash
-./run.sh /path/to/your/public/key.pub
-```
-
-Example:
-```bash
-./run.sh ~/.ssh/id_rsa.pub
-```
-
-### On Windows
-
-```cmd
-run.bat C:\path\to\your\public\key.pub
-```
-
-Example:
-```cmd
-run.bat C:\Users\YourUser\.ssh\id_rsa.pub
+docker run -d -p 2222:22 --name deploy4j-droplet -v C:\Users\YourUser\.ssh\id_rsa.pub:/root/.ssh/authorized_keys teggr/deploy4j-docker-droplet:latest
 ```
 
 The container will:
@@ -77,45 +31,6 @@ The container will:
 - Map SSH port 22 to host port 2222
 - Mount your public key to `/root/.ssh/authorized_keys`
 - Be named `deploy4j-droplet`
-
-## Connecting via SSH
-
-Once the container is running, connect using:
-
-```bash
-ssh -p 2222 root@localhost
-```
-
-## Stopping the Container
-
-```bash
-docker stop deploy4j-droplet
-```
-
-## Removing the Container
-
-```bash
-docker rm deploy4j-droplet
-```
-
-## Pushing to Docker Hub
-
-To push the image to Docker Hub:
-
-1. Tag the image with your Docker Hub username:
-   ```bash
-   docker tag deploy4j-docker-droplet:latest <your-dockerhub-username>/deploy4j-docker-droplet:latest
-   ```
-
-2. Login to Docker Hub:
-   ```bash
-   docker login
-   ```
-
-3. Push the image:
-   ```bash
-   docker push <your-dockerhub-username>/deploy4j-docker-droplet:latest
-   ```
 
 ## Technical Details
 
@@ -132,7 +47,7 @@ To push the image to Docker Hub:
 
 ### Scripts
 
-- `build.sh` / `build.bat`: Build the Docker image
+- `build.sh` / `build.bat`: Build the Docker image. \Use '--deploy' option to push to DockerHub
 - `run.sh` / `run.bat`: Run the container with public key mounting
 
 ## Troubleshooting
@@ -151,3 +66,4 @@ To push the image to Docker Hub:
 ## License
 
 See LICENSE file for details.
+

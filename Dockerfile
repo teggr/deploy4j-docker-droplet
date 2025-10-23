@@ -2,9 +2,17 @@ FROM ubuntu:latest
 
 # Update and install SSH server
 RUN apt-get update && \
-    apt-get install -y openssh-server && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y \
+            openssh-server \
+            sudo \
+            coreutils \
+            net-tools \
+            iproute2 \
+            vim \
+            less \
+            apt-utils \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Create SSH directory for root
 RUN mkdir -p /root/.ssh && \

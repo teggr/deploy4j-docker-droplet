@@ -34,11 +34,11 @@ echo Build successful!
 echo Image: %IMAGE_NAME%:%IMAGE_TAG%
 
 REM Deploy to DockerHub if requested
+set REMOTE_IMAGE=%DOCKERHUB_REPO%/%IMAGE_NAME%:%IMAGE_TAG%
 if "%DEPLOY%"=="true" (
     echo.
     echo Deploying to DockerHub...
-    set REMOTE_IMAGE=%DOCKERHUB_REPO%/%IMAGE_NAME%:%IMAGE_TAG%
-    
+
     echo Tagging image as %REMOTE_IMAGE%
     docker tag %IMAGE_NAME%:%IMAGE_TAG% %REMOTE_IMAGE%
     
