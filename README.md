@@ -23,7 +23,14 @@ This project provides a simple Docker image based on Ubuntu with SSH support. It
 The container requires you to mount your SSH public key for authentication.
 
 ```bash
-docker run -d -p 2222:22 --name deploy4j-droplet -v C:\Users\YourUser\.ssh\id_rsa.pub:/root/.ssh/authorized_keys teggr/deploy4j-docker-droplet:latest
+# Running instructions
+docker run -d -p 2222:22 --name deploy4j-droplet -v "C:\Users\YOUR_USER\.ssh\id_rsa.pub":/root/.ssh/authorized_keys teggr/deploy4j-docker-droplet:latest
+
+# connect via ssh
+ssh -o StrictHostKeyChecking=no -p 2222 root@localhost 
+
+# connect to shell
+docker exec -it deploy4j-droplet /bin/bash
 ```
 
 The container will:
