@@ -34,6 +34,7 @@ docker run -d ^
     --name %CONTAINER_NAME% ^
     -p %SSH_PORT%:22 ^
     -v "%PUBLIC_KEY_PATH%":/tmp/authorized_keys:ro ^
+    -v /var/run/docker.sock:/var/run/docker.sock ^
     %IMAGE_NAME%:%IMAGE_TAG%
 
 if %errorlevel% equ 0 (
