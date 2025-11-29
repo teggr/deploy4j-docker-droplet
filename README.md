@@ -7,7 +7,7 @@ This project provides a simple Docker image based on Ubuntu with SSH support. It
 
 ## Features
 
-- Based on latest Ubuntu image
+- Based on latest Ubuntu LTS image
 - SSH server configured and ready to use
 - Support for SSH public key authentication
 - Root login enabled with SSH keys
@@ -43,7 +43,7 @@ The container will:
 
 ### Dockerfile
 
-- Base image: `ubuntu:latest`
+- Base image: `ubuntu:24.04`
 - Installed packages: `openssh-server`
 - SSH configuration:
   - Root login with public key authentication enabled
