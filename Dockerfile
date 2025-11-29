@@ -1,6 +1,9 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
-# Update and install SSH server
+# Avoid interactive prompts for packages
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Update and install SSH server + curl (and CA certs for HTTPS)
 RUN apt-get update && \
     apt-get install -y \
             openssh-server \
@@ -11,6 +14,8 @@ RUN apt-get update && \
             vim \
             less \
             apt-utils \
+            curl \
+            ca-certificates \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
